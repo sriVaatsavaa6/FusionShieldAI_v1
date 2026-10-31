@@ -347,7 +347,7 @@
               "div",
               { className: "brand-logo-box" },
               h("img", {
-                src: "/static/logo.png?v=3.3",
+                src: "/logo.png?v=3.5",
                 alt: "FusionShield AI Logo",
                 className: "brand-logo-img",
               })
