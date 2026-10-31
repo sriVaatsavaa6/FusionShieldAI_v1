@@ -133,6 +133,23 @@
 
     useEffect(() => {
       let active = true;
+      const startTime = Date.now();
+
+      function hideSplash() {
+        const elapsed = Date.now() - startTime;
+        const minDisplayMs = 2600;
+        const waitMs = Math.max(0, minDisplayMs - elapsed);
+        setTimeout(() => {
+          const splashEl = document.getElementById("splash-screen");
+          if (splashEl) {
+            splashEl.classList.add("splash-hidden");
+            setTimeout(() => {
+              if (splashEl.parentNode) splashEl.style.display = "none";
+            }, 550);
+          }
+        }, waitMs);
+      }
+
       fetch("/api/status")
         .then((res) => res.json())
         .then((data) => {
@@ -153,6 +170,7 @@
             model_names: data.model_names || DEFAULT_DETECTORS,
             error: data.error || null,
           });
+          hideSplash();
         })
         .catch((err) => {
           if (!active) return;
@@ -162,6 +180,7 @@
             loaded: false,
             error: String(err),
           }));
+          hideSplash();
         });
       return () => {
         active = false;
@@ -328,7 +347,7 @@
               "div",
               { className: "brand-logo-box" },
               h("img", {
-                src: "/static/logo.png",
+                src: "/static/logo.png?v=3.3",
                 alt: "FusionShield AI Logo",
                 className: "brand-logo-img",
               })
@@ -661,10 +680,30 @@
             selectedFile &&
               h(
                 "div",
-                { className: "file-status-strip" },
+                {
+                  className: "file-status-strip",
+                  style: {
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "0.6rem 1rem",
+                    width: "100%",
+                  },
+                },
                 h(
                   "div",
-                  { className: "file-strip-left" },
+                  {
+                    className: "file-strip-left",
+                    style: {
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.55rem",
+                      minWidth: 0,
+                      flex: "1 1 200px",
+                      overflow: "hidden",
+                    },
+                  },
                   h("span", { className: "file-green-dot" }),
                   previewUrl &&
                     h("img", {
@@ -674,18 +713,38 @@
                     }),
                   h(
                     "span",
-                    { className: "file-strip-name" },
+                    {
+                      className: "file-strip-name",
+                      style: {
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        minWidth: 0,
+                      },
+                    },
                     selectedFile.name
                   ),
                   h(
                     "span",
-                    { className: "file-strip-size" },
+                    {
+                      className: "file-strip-size",
+                      style: { flexShrink: 0, whiteSpace: "nowrap" },
+                    },
                     formatBytes(selectedFile.size)
                   )
                 ),
                 h(
                   "div",
-                  { className: "file-strip-actions" },
+                  {
+                    className: "file-strip-actions",
+                    style: {
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.45rem",
+                      flexShrink: 0,
+                      marginLeft: "auto",
+                    },
+                  },
                   h(
                     "button",
                     {

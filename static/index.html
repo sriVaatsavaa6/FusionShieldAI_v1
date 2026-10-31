@@ -2,24 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FusionShield AI | A Heterogeneous Ensemble Framework
-for Detecting Deepfake and
-AI-Generated Images
-</title>
-  <link rel="icon" type="image/png" href="/static/logo.png" />
-  <link rel="apple-touch-icon" href="/static/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>FusionShield AI | A Heterogeneous Ensemble Framework for Detecting Deepfake and AI-Generated Images</title>
+
+  <!-- PWA Manifest & Mobile App Capabilities -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#10B981" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="FusionShield AI" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="/static/logo.png?v=3.5" />
+  <link rel="apple-touch-icon" sizes="192x192" href="/static/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/static/icon-512.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="stylesheet" href="/static/styles.css?v=3.5" />
   <!-- React 18 Production CDN -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 </head>
 <body>
+  <!-- Cinematic Countdown Splash Loader (White Background, Large Logo, Radar/Countdown Ring & Sliding Bar) -->
+  <div id="splash-screen" class="splash-overlay" aria-hidden="true">
+    <div class="splash-box">
+      <div class="cinematic-stage">
+        <!-- Expanding pulse rings -->
+        <div class="cinematic-pulse-ring ring-1"></div>
+        <div class="cinematic-pulse-ring ring-2"></div>
+
+        <!-- Precision SVG Countdown / Radar Dial -->
+        <svg class="cinematic-dial-svg" viewBox="0 0 240 240">
+          <!-- Crosshair axes -->
+          <line x1="120" y1="6" x2="120" y2="26" class="dial-crosshair" />
+          <line x1="120" y1="214" x2="120" y2="234" class="dial-crosshair" />
+          <line x1="6" y1="120" x2="26" y2="120" class="dial-crosshair" />
+          <line x1="214" y1="120" x2="234" y2="120" class="dial-crosshair" />
+
+          <!-- Outer precision tick ring -->
+          <circle cx="120" cy="120" r="106" class="dial-tick-ring" />
+
+          <!-- Track circle -->
+          <circle cx="120" cy="120" r="94" class="dial-track-circle" />
+
+          <!-- Animated countdown sweep arc -->
+          <circle cx="120" cy="120" r="94" class="dial-countdown-arc" />
+
+          <!-- Inner counter-rotating segmented ring -->
+          <circle cx="120" cy="120" r="82" class="dial-inner-dashed" />
+        </svg>
+
+        <!-- Rotating radar sweep beam -->
+        <div class="cinematic-radar-sweep"></div>
+
+        <!-- Center Green Shield Logo -->
+        <img src="/static/logo.png?v=3.5" alt="" class="splash-logo" />
+      </div>
+
+      <!-- LinkedIn-style sliding bar underneath -->
+      <div class="splash-bottom-bars">
+        <div class="splash-bar-track">
+          <div class="splash-bar-runner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="root"></div>
-  <script src="/static/app.js"></script>
+  <script src="/static/app.js?v=3.5"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker
+          .register("/sw.js", { scope: "/" })
+          .catch(function (err) {
+            console.warn("PWA Service Worker registration skipped:", err);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
-

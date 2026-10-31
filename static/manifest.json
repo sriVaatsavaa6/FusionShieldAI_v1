@@ -1,0 +1,35 @@
+{
+  "id": "/",
+  "name": "FusionShield AI — Deepfake & AI Image Forensics",
+  "short_name": "FusionShield AI",
+  "description": "A Heterogeneous Ensemble Framework for Detecting Deepfake and AI-Generated Images using Six CNN Detectors and Platt-Calibrated Adaptive Fusion.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#10B981",
+  "categories": ["security", "utilities", "productivity", "education"],
+  "icons": [
+    {
+      "src": "/static/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
+

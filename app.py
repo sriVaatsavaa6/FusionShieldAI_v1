@@ -970,6 +970,21 @@ async def homepage(request):
     return FileResponse(STATIC_DIR / "index.html")
 
 
+async def pwa_manifest(request):
+    return FileResponse(
+        STATIC_DIR / "manifest.json",
+        media_type="application/manifest+json",
+    )
+
+
+async def pwa_service_worker(request):
+    return FileResponse(
+        STATIC_DIR / "sw.js",
+        media_type="application/javascript",
+        headers={"Service-Worker-Allowed": "/"},
+    )
+
+
 async def api_status(request):
     try:
         models, _, config = load_ensemble()
@@ -1074,6 +1089,8 @@ async def lifespan(app):
 
 routes = [
     Route("/", homepage),
+    Route("/manifest.json", pwa_manifest, methods=["GET"]),
+    Route("/sw.js", pwa_service_worker, methods=["GET"]),
     Route("/api/status", api_status, methods=["GET"]),
     Route("/api/predict", api_predict, methods=["POST"]),
     Route("/api/report", api_report, methods=["POST"]),
