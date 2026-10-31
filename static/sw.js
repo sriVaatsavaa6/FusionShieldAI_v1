@@ -1,14 +1,14 @@
-const CACHE_NAME = "fusionshield-ai-pwa-v3.5";
+const CACHE_NAME = "fusionshield-ai-pwa-v3.6";
 const STATIC_ASSETS = [
   "/",
   "/manifest.json",
-  "/static/index.html",
-  "/static/styles.css?v=3.5",
-  "/static/app.js?v=3.5",
-  "/static/logo.png?v=3.3",
-  "/static/icon-192.png",
-  "/static/icon-512.png",
-  "/static/icon-maskable-512.png",
+  "/index.html",
+  "/styles.css?v=3.5",
+  "/app.js?v=3.5",
+  "/logo.png?v=3.5",
+  "/icon-192.png",
+  "/icon-512.png",
+  "/icon-maskable-512.png",
 ];
 
 self.addEventListener("install", (event) => {
@@ -27,7 +27,7 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((key) => key !== CACHE_NAME)
+            .filter((key) => key.startsWith("fusionshield-ai-pwa-") && key !== CACHE_NAME)
             .map((key) => caches.delete(key))
         )
       )
