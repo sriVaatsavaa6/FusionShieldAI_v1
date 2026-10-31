@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,20 +15,22 @@
   <meta name="apple-mobile-web-app-title" content="FusionShield AI" />
 
   <!-- Icons -->
-  <link rel="icon" type="image/png" href="/static/logo.png?v=3.5" />
-  <link rel="apple-touch-icon" sizes="192x192" href="/static/icon-192.png" />
-  <link rel="apple-touch-icon" sizes="512x512" href="/static/icon-512.png" />
+  <link rel="icon" type="image/png" href="/logo.png?v=3.5" />
+  <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css?v=3.5" />
+
+  <link rel="stylesheet" href="/styles.css?v=3.5" />
+
   <!-- React 18 Production CDN -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 </head>
 <body>
-  <!-- Cinematic Countdown Splash Loader (White Background, Large Logo, Radar/Countdown Ring & Sliding Bar) -->
+  <!-- Cinematic Countdown Splash Loader -->
   <div id="splash-screen" class="splash-overlay" aria-hidden="true">
     <div class="splash-box">
       <div class="cinematic-stage">
@@ -37,22 +40,14 @@
 
         <!-- Precision SVG Countdown / Radar Dial -->
         <svg class="cinematic-dial-svg" viewBox="0 0 240 240">
-          <!-- Crosshair axes -->
           <line x1="120" y1="6" x2="120" y2="26" class="dial-crosshair" />
           <line x1="120" y1="214" x2="120" y2="234" class="dial-crosshair" />
           <line x1="6" y1="120" x2="26" y2="120" class="dial-crosshair" />
           <line x1="214" y1="120" x2="234" y2="120" class="dial-crosshair" />
 
-          <!-- Outer precision tick ring -->
           <circle cx="120" cy="120" r="106" class="dial-tick-ring" />
-
-          <!-- Track circle -->
           <circle cx="120" cy="120" r="94" class="dial-track-circle" />
-
-          <!-- Animated countdown sweep arc -->
           <circle cx="120" cy="120" r="94" class="dial-countdown-arc" />
-
-          <!-- Inner counter-rotating segmented ring -->
           <circle cx="120" cy="120" r="82" class="dial-inner-dashed" />
         </svg>
 
@@ -60,10 +55,10 @@
         <div class="cinematic-radar-sweep"></div>
 
         <!-- Center Green Shield Logo -->
-        <img src="/static/logo.png?v=3.5" alt="" class="splash-logo" />
+        <img src="/logo.png?v=3.5" alt="" class="splash-logo" />
       </div>
 
-      <!-- LinkedIn-style sliding bar underneath -->
+      <!-- Sliding bar underneath -->
       <div class="splash-bottom-bars">
         <div class="splash-bar-track">
           <div class="splash-bar-runner"></div>
@@ -73,7 +68,9 @@
   </div>
 
   <div id="root"></div>
-  <script src="/static/app.js?v=3.5"></script>
+
+  <script src="/app.js?v=3.5"></script>
+
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {

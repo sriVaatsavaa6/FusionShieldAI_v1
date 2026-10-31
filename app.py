@@ -1087,15 +1087,24 @@ async def lifespan(app):
     yield
 
 
+
 routes = [
     Route("/", homepage),
     Route("/manifest.json", pwa_manifest, methods=["GET"]),
     Route("/sw.js", pwa_service_worker, methods=["GET"]),
+
+    # API endpoints
     Route("/api/status", api_status, methods=["GET"]),
     Route("/api/predict", api_predict, methods=["POST"]),
     Route("/api/report", api_report, methods=["POST"]),
+
+    # Existing static asset route (backward compatibility)
     Mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static"),
+
+    # Root-level static assets (Netlify-compatible paths)
+    Mount("/", StaticFiles(directory=str(STATIC_DIR)), name="frontend"),
 ]
+
 
 middleware = [
     Middleware(
